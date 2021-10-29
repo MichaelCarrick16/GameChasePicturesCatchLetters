@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.gamechasepicturescatchletters.ui.fragment.menu.MenuFragment"
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menuFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.gamechasepicturescatchletters.ui.fragment.detail.DetailFragment"
+        android:label="DetailFragment" />
+</navigation>
