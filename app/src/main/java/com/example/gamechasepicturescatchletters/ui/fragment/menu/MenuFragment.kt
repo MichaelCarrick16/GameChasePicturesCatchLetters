@@ -5,7 +5,9 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.gamechasepicturescatchletters.R
@@ -27,7 +29,11 @@ class MenuFragment : Fragment() {
     private fun initViews() {
         mediaPlayer  = MediaPlayer.create(requireContext(),R.raw.sound)
 
-        menuAndDetailViewModel = ViewModelProvider(this).get(MenuAndDetailViewModel::class.java)
+        menuAndDetailViewModel = ViewModelProvider(requireActivity()).get(MenuAndDetailViewModel::class.java)
+
+        menuAndDetailViewModel.currentRuby.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context,"You added 50 ruby to your account! Current Ruby = $it",Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,7 +65,7 @@ class MenuFragment : Fragment() {
 
         imv_ruby_menu.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-
+                menuAndDetailViewModel.insertRuby()
             }
         })
     }
